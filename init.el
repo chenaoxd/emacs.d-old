@@ -8,6 +8,7 @@
  '(column-number-mode t)
  '(custom-safe-themes (quote ("9fd20670758db15cc4d0b4442a74543888d2e445646b25f2755c65dcd6f1504b" default)))
  '(markdown-command "/usr/local/bin/markdown")
+ '(markdown-css-path "/Users/dreamszl/.emacs.d/plugins/github-markdown-css/github.css")
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(tooltip-mode nil))
@@ -51,9 +52,9 @@
 
 ;; markdown mode
 (autoload 'markdown-mode "markdown-mode.el"
-    "Major mode for editing Markdown files" t)
+  "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
-    (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+      (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
 
 ;; tramp mode
 (require 'tramp)
@@ -61,11 +62,52 @@
 
 ;; coding-system-type
 (set-face-attribute
-  'default nil :font "Monaco-14") ;设置默认字体
+ 'default nil :font "Monaco-14") ;设置默认字体
 (set-fontset-font
-    (frame-parameter nil 'font)
-    'han
-    (font-spec :family "STHeiti" :size 14)) ;设置汉字字体
+ (frame-parameter nil 'font)
+ 'han
+ (font-spec :family "STHeiti" :size 13)) ;设置汉字字体
 
 (prefer-coding-system 'gb18030)
 (prefer-coding-system 'utf-8)
+
+;; php-mode
+(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+(add-hook 'php-mode-hook 'my-php-mode-hook)
+(defun my-php-mode-hook ()
+  "My PHP mode configuration."
+  (setq indent-tabs-mode nil
+        tab-width 4
+        c-basic-offset 4))
+
+;; octave-mode
+(autoload 'octave-mode "octave-mod" nil t)
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
+;; emacs init size
+(defun set-frame-size-according-to-resolution ()
+  (interactive)
+  (if window-system
+  (progn
+    ;; use 120 char wide window for largeish displays
+    ;; and smaller 80 column windows for smaller displays
+    ;; pick whatever numbers make sense for you
+    (if (> (x-display-pixel-width) 1600)
+           (add-to-list 'default-frame-alist (cons 'width 235))
+           (add-to-list 'default-frame-alist (cons 'width 80)))
+    (add-to-list 'default-frame-alist 
+         (cons 'height 55))
+    (let ((frame (selected-frame)))
+      (delete-other-windows)
+      (set-frame-position frame 11 40)
+    ))))
+(set-frame-size-according-to-resolution)
