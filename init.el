@@ -102,12 +102,25 @@
     ;; and smaller 80 column windows for smaller displays
     ;; pick whatever numbers make sense for you
     (if (> (x-display-pixel-width) 1600)
-           (add-to-list 'default-frame-alist (cons 'width 235))
-           (add-to-list 'default-frame-alist (cons 'width 80)))
-    (add-to-list 'default-frame-alist 
-         (cons 'height 55))
+        (add-to-list 'default-frame-alist (cons 'width 235))
+      (add-to-list 'default-frame-alist (cons 'width 175)))
+    (if (> (x-display-pixel-width) 1600)
+        (add-to-list 'default-frame-alist (cons 'height 55))
+      (add-to-list 'default-frame-alist (cons 'height 46)))
     (let ((frame (selected-frame)))
       (delete-other-windows)
       (set-frame-position frame 11 40)
     ))))
 (set-frame-size-according-to-resolution)
+
+;;;;;;;;;;;;; jade-mode ;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/plugins/jade-mode")
+(require 'sws-mode)
+(require 'jade-mode)    
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+
+
+;;;;;;;;;;;; coffee-mode ;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/elpa/coffee-mode-0.4.1.1")
+(require 'coffee-mode)
