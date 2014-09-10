@@ -61,12 +61,12 @@
 (setq tramp-default-method "ssh")
 
 ;; coding-system-type
-(set-face-attribute
- 'default nil :font "Monaco-14") ;设置默认字体
-(set-fontset-font
- (frame-parameter nil 'font)
- 'han
- (font-spec :family "STHeiti" :size 13)) ;设置汉字字体
+;;(set-face-attribute
+;; 'default nil :font "Monaco-14") ;设置默认字体
+;;(set-fontset-font
+;; (frame-parameter nil 'font)
+;; 'han
+;; (font-spec :family "STHeiti" :size 13)) ;设置汉字字体
 
 (prefer-coding-system 'gb18030)
 (prefer-coding-system 'utf-8)
@@ -102,14 +102,14 @@
     ;; and smaller 80 column windows for smaller displays
     ;; pick whatever numbers make sense for you
     (if (> (x-display-pixel-width) 1600)
-        (add-to-list 'default-frame-alist (cons 'width 235))
+        (add-to-list 'default-frame-alist (cons 'width 205))
       (add-to-list 'default-frame-alist (cons 'width 175)))
     (if (> (x-display-pixel-width) 1600)
-        (add-to-list 'default-frame-alist (cons 'height 55))
+        (add-to-list 'default-frame-alist (cons 'height 60))
       (add-to-list 'default-frame-alist (cons 'height 46)))
     (let ((frame (selected-frame)))
       (delete-other-windows)
-      (set-frame-position frame 11 40)
+      (set-frame-position frame 10 10)
     ))))
 (set-frame-size-according-to-resolution)
 
