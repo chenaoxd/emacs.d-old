@@ -124,3 +124,7 @@
 ;;;;;;;;;;;; coffee-mode ;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/elpa/coffee-mode-0.4.1.1")
 (require 'coffee-mode)
+
+
+;;;;;;;;;;;; hide menu bar ;;;;;;;;;;;;;;;
+(menu-bar-mode -1)
