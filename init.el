@@ -124,3 +124,6 @@
 ;;;;;;;;;;;; coffee-mode ;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/elpa/coffee-mode-0.4.1.1")
 (require 'coffee-mode)
+
+;;;;;;;;;;;; cython-mode ;;;;;;;;;;;;;
+(require 'cython-mode)
